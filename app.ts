@@ -7,6 +7,7 @@ async function app() {
     console.log("start app")
 
     await module1()
+
     const { data, error } = await data_error()
 
     if (error) {
