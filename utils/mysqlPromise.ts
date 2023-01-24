@@ -1,4 +1,4 @@
-const beginTransaction = (connection: any) => {
+export const beginTransaction = (connection: any) => {
     return new Promise<void>((resolve, reject) => {
         connection.beginTransaction((err: any) => {
             if (err) {
@@ -10,9 +10,9 @@ const beginTransaction = (connection: any) => {
     });
 }
 
-const query = (connection: any, statement: string, params: any) => {
+export const query = (connection: any, statement: string, params: any) => {
     return new Promise((resolve, reject) => {
-        connection.query(statement, params, (err: any, results: []) => {
+        connection.query(statement, params, (err: any, results: any) => {
             if (err) {
                 reject(err);
             } else {
@@ -22,7 +22,7 @@ const query = (connection: any, statement: string, params: any) => {
     });
 }
 
-const commit = (connection: any) => {
+export const commit = (connection: any) => {
     return new Promise<void>((resolve, reject) => {
         connection.commit((err: any) => {
             if (err) {
@@ -34,7 +34,7 @@ const commit = (connection: any) => {
     });
 };
 
-const end = (connection: any) => {
+export const end = (connection: any) => {
     return new Promise<void>((resolve, reject) => {
         connection.end((err: any) => {
             if (err) {
@@ -46,18 +46,10 @@ const end = (connection: any) => {
     });
 };
 
-const rollback = (connection: any, err: any) => {
+export const rollback = (connection: any, err: any) => {
     return new Promise((resolve, reject) => {
         connection.rollback(() => {
             reject(err);
         });
     });
-};
-
-module.exports = {
-    beginTransaction: beginTransaction,
-    query: query,
-    commit: commit,
-    rollback: rollback,
-    end: end
 };
