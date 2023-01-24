@@ -1,7 +1,5 @@
 require('dotenv').config();
 
-import { module1 } from "./modules/module1";
-// import { data_error } from "./modules/data_error";
 import { data_error_promise } from "./modules/data_error_promise";
 
 async function app() {
